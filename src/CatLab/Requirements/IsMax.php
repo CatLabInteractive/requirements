@@ -31,7 +31,7 @@ class IsMax extends Requirement
      */
     function getTemplate() : string
     {
-        return 'Property "%s" must have a maximum length of ' . $this->length . '.';
+        return 'Property \'%s\' must have a maximum length of ' . $this->length . '.';
     }
 
     /**

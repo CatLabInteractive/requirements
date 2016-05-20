@@ -31,7 +31,7 @@ class IsMin extends Requirement
      */
     function getTemplate() : string
     {
-        return 'Property "%s" must have a minimum length of ' . $this->length . '.';
+        return 'Property \'%s\' must have a minimum length of ' . $this->length . '.';
     }
 
     /**

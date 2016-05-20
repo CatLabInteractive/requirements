@@ -30,6 +30,6 @@ class Exists extends Requirement
      */
     function getTemplate() : string
     {
-        return 'Property "%s" must exist.';
+        return 'Property \'%s\' must exist.';
     }
 }
