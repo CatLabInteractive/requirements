@@ -21,6 +21,18 @@ class MessageCollection extends Collection
     }
 
     /**
+     * @return array
+     */
+    public function toArray()
+    {
+        $out = [];
+        foreach ($this as $v) {
+            $out[] = $v->toArray();
+        }
+        return $out;
+    }
+
+    /**
      * @return string
      */
     public function __toString()
