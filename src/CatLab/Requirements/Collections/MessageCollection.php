@@ -3,6 +3,7 @@
 namespace CatLab\Requirements\Collections;
 
 use CatLab\Base\Collections\Collection;
+use CatLab\Requirements\Models\Message;
 
 /**
  * Class Messages
@@ -29,6 +30,20 @@ class MessageCollection extends Collection
         foreach ($this as $v) {
             $out[] = $v->toArray();
         }
+        return $out;
+    }
+
+    public function toMap()
+    {
+        $out = [];
+        foreach ($this as $v) {
+            /** @var Message $v */
+            if (!isset($out[$v->getPropertyName()])) {
+                $out[$v->getPropertyName()] = [];
+            }
+            $out[$v->getPropertyName()][] = $v->getMessage();
+        }
+        
         return $out;
     }
 

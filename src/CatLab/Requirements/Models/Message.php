@@ -2,8 +2,7 @@
 
 namespace CatLab\Requirements\Models;
 
-use CatLab\Requirements\Interfaces\Property;
-use CatLab\Requirements\Requirement;
+use CatLab\Requirements\Interfaces\Requirement;
 
 /**
  * Class Message
@@ -37,6 +36,30 @@ class Message
         $this->property = $propertyName;
         $this->requirement = $requirement;
         $this->message = $message;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPropertyName() : string
+    {
+        return $this->property;
+    }
+
+    /**
+     * @return \CatLab\Requirements\Interfaces\Requirement
+     */
+    public function getRequirement() : Requirement
+    {
+        return $this->requirement;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage() : string
+    {
+        return $this->message;
     }
 
     /**
