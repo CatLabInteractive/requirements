@@ -12,7 +12,7 @@ use CatLab\Requirements\Requirement;
 class Message
 {
     /**
-     * @var Property
+     * @var string
      */
     private $property;
 
@@ -28,13 +28,13 @@ class Message
 
     /**
      * Message constructor.
-     * @param Property $property
      * @param Requirement $requirement
+     * @param string $propertyName
      * @param string $message
      */
-    public function __construct(Property $property, Requirement $requirement, string $message)
+    public function __construct(Requirement $requirement, string $propertyName, string $message)
     {
-        $this->property = $property;
+        $this->property = $propertyName;
         $this->requirement = $requirement;
         $this->message = $message;
     }

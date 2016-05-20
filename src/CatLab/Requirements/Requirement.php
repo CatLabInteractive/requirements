@@ -24,6 +24,6 @@ abstract class Requirement implements \CatLab\Requirements\Interfaces\Requiremen
             $exception->getProperty()->getPropertyName()
         );
 
-        return new Message($exception->getProperty(), $exception->getRequirement(), $message);
+        return new Message($exception->getRequirement(), $exception->getProperty()->getPropertyName(), $message);
     }
 }
