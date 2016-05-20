@@ -31,7 +31,7 @@ class IsType extends Requirement
      */
     function getTemplate() : string
     {
-        return '%s must be of type ' . $this->type;
+        return 'Property "%s" must be of type ' . $this->type . '.';
     }
 
     /**
