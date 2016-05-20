@@ -43,7 +43,7 @@ class IsMin extends Requirement
     public function validate(Property $property, $value)
     {
         if (PropertyType::isNumeric($property->getType())) {
-            if ($value > $this->length) {
+            if ($value < $this->length) {
                 throw RequirementValidationException::make($property, $this, $value);
             }
         } else {
