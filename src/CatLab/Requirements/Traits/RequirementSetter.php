@@ -5,6 +5,8 @@ namespace CatLab\Requirements\Traits;
 use CatLab\Requirements\Collections\RequirementCollection;
 use CatLab\Requirements\Exists;
 use CatLab\Requirements\Interfaces\Requirement;
+use CatLab\Requirements\IsMax;
+use CatLab\Requirements\IsMin;
 use CatLab\Requirements\IsType;
 
 /**
@@ -98,6 +100,7 @@ trait RequirementSetter
      */
     public function min(int $amount)
     {
+        $this->addRequirement(new IsMin($amount));
         return $this;
     }
 
@@ -107,6 +110,7 @@ trait RequirementSetter
      */
     public function max(int $amount)
     {
+        $this->addRequirement(new IsMax($amount));
         return $this;
     }
 }

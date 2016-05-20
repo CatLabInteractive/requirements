@@ -9,7 +9,9 @@
       "email": "info@catlab.be"
     }
   ],
-  "require": {},
+  "require": {
+    "php": ">=7.0.0"
+  },
   "autoload": {
     "psr-4" : {
       "CatLab\\Requirements\\" : "src/CatLab/Requirements"
