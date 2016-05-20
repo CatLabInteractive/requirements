@@ -40,6 +40,17 @@ class Message
     }
 
     /**
+     * @return string[]
+     */
+    public function toArray()
+    {
+        return [
+            'property' => $this->property,
+            'message' => $this->message
+        ];
+    }
+
+    /**
      * @return string
      */
     public function __toString()
