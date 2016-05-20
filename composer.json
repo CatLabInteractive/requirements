@@ -1,6 +1,6 @@
 {
   "name": "catlabinteractive/requirements",
-  "description": "A few classes that you always need.",
+  "description": "Requirements for resource properties",
   "type": "library",
   "license": "MIT",
   "authors": [
