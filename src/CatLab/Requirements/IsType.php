@@ -46,6 +46,10 @@ class IsType extends Requirement
             return;
         }
 
+        if ($value === null) {
+            return;
+        }
+
         switch ($this->type) {
             case PropertyType::INTEGER:
                 $check = is_int($value);

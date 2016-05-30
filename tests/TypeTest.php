@@ -16,6 +16,7 @@ class TypeTest extends PHPUnit_Framework_TestCase
 
         $property->getRequirements()->validate($property, 'string');
         $property->getRequirements()->validate($property, '123');
+        $property->getRequirements()->validate($property, null);
     }
 
     /**
@@ -27,6 +28,7 @@ class TypeTest extends PHPUnit_Framework_TestCase
         $property->setType(\CatLab\Requirements\Enums\PropertyType::STRING);
 
         $property->getRequirements()->validate($property, 123);
+        $property->getRequirements()->validate($property, null);
     }
 
 
@@ -36,6 +38,7 @@ class TypeTest extends PHPUnit_Framework_TestCase
         $property->setType(\CatLab\Requirements\Enums\PropertyType::INTEGER);
 
         $property->getRequirements()->validate($property, 123);
+        $property->getRequirements()->validate($property, null);
     }
 
     /**
@@ -47,6 +50,7 @@ class TypeTest extends PHPUnit_Framework_TestCase
         $property->setType(\CatLab\Requirements\Enums\PropertyType::INTEGER);
 
         $property->getRequirements()->validate($property, 123.5);
+        $property->getRequirements()->validate($property, null);
     }
 
     /**
@@ -59,6 +63,7 @@ class TypeTest extends PHPUnit_Framework_TestCase
 
         $property->getRequirements()->validate($property, 123);
         $property->getRequirements()->validate($property, 123.5);
+        $property->getRequirements()->validate($property, null);
     }
 
     /**
@@ -70,5 +75,6 @@ class TypeTest extends PHPUnit_Framework_TestCase
         $property->setType(\CatLab\Requirements\Enums\PropertyType::NUMBER);
 
         $property->getRequirements()->validate($property, 'abc');
+        $property->getRequirements()->validate($property, null);
     }
 }

@@ -20,6 +20,7 @@ class MinTest extends PHPUnit_Framework_TestCase
     public function testMinLength()
     {
         // No exception = fine
+        $this->property->getRequirements()->validate($this->property, null);
         $this->property->getRequirements()->validate($this->property, 'This is a long string');
         $this->property->getRequirements()->validate($this->property, 'abc');
     }
@@ -41,6 +42,7 @@ class MinTest extends PHPUnit_Framework_TestCase
         $numericProperty->setType(\CatLab\Requirements\Enums\PropertyType::INTEGER);
         $numericProperty->min(3);
 
+        $numericProperty->getRequirements()->validate($numericProperty, null);
         $numericProperty->getRequirements()->validate($numericProperty, 3);
         $numericProperty->getRequirements()->validate($numericProperty, 4);
         $numericProperty->getRequirements()->validate($numericProperty, PHP_INT_MAX);

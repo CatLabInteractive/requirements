@@ -17,6 +17,7 @@ class MaxTest extends PHPUnit_Framework_TestCase
     public function testMaxLength()
     {
         // No exception = fine
+        $this->property->getRequirements()->validate($this->property, null);
         $this->property->getRequirements()->validate($this->property, 'Quite short string');
         $this->property->getRequirements()->validate($this->property, 'A rather long string');
     }
@@ -38,6 +39,7 @@ class MaxTest extends PHPUnit_Framework_TestCase
         $numericProperty->setType(\CatLab\Requirements\Enums\PropertyType::INTEGER);
         $numericProperty->max(4);
 
+        $numericProperty->getRequirements()->validate($numericProperty, null);
         $numericProperty->getRequirements()->validate($numericProperty, 3);
         $numericProperty->getRequirements()->validate($numericProperty, -123456789);
     }

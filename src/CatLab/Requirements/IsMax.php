@@ -42,6 +42,10 @@ class IsMax extends Requirement
      */
     public function validate(Property $property, $value)
     {
+        if ($value === null) {
+            return;
+        }
+
         if (PropertyType::isNumeric($property->getType())) {
             if ($value > $this->length) {
                 throw RequirementValidationException::make($property, $this, $value);

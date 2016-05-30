@@ -4,6 +4,7 @@ namespace CatLab\Requirements\Traits;
 
 use CatLab\Requirements\Collections\RequirementCollection;
 use CatLab\Requirements\Exists;
+use CatLab\Requirements\InArray;
 use CatLab\Requirements\Interfaces\Requirement;
 use CatLab\Requirements\IsMax;
 use CatLab\Requirements\IsMin;
@@ -111,6 +112,16 @@ trait RequirementSetter
     public function max(int $amount)
     {
         $this->addRequirement(new IsMax($amount));
+        return $this;
+    }
+
+    /**
+     * @param array $values
+     * @return $this
+     */
+    public function enum(array $values)
+    {
+        $this->addRequirement(new InArray($values));
         return $this;
     }
 }
