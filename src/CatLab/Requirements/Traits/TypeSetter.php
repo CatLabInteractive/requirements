@@ -37,6 +37,15 @@ trait TypeSetter
     /**
      * @return $this
      */
+    public function bool()
+    {
+        $this->setType(PropertyType::BOOL);
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
     public function datetime()
     {
         $this->setType(PropertyType::DATETIME);

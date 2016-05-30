@@ -12,6 +12,7 @@ class PropertyType
     const STRING = 'string';
     const DATETIME = 'datetime';
     const NUMBER = 'number';
+    const BOOL = 'bool';
 
     /**
      * @param $type
@@ -23,7 +24,8 @@ class PropertyType
             self::INTEGER,
             self::STRING,
             self::DATETIME,
-            self::NUMBER
+            self::NUMBER,
+            self::BOOL
         ]);
     }
 
