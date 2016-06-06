@@ -5,6 +5,8 @@ namespace CatLab\Requirements\Collections;
 use CatLab\Base\Collections\Collection;
 use CatLab\Requirements\Exceptions\PropertyValidationException;
 use CatLab\Requirements\Exceptions\RequirementValidationException;
+use CatLab\Requirements\Exceptions\ResourceValidationException;
+use CatLab\Requirements\Exceptions\ValidatorValidationException;
 use CatLab\Requirements\Interfaces\Property;
 use CatLab\Requirements\Interfaces\Requirement;
 use CatLab\Requirements\Interfaces\Validator;
@@ -17,7 +19,7 @@ class ValidatorCollection extends Collection
 {
     /**
      * @param $value
-     * @throws PropertyValidationException
+     * @throws ResourceValidationException
      */
     public function validate($value)
     {
@@ -26,13 +28,13 @@ class ValidatorCollection extends Collection
             /** @var Validator $validator */
             try {
                 $validator->validate($value);
-            } catch (RequirementValidationException $e) {
-                $messages->add($e->getRequirement()->getErrorMessage($e));
+            } catch (ValidatorValidationException $e) {
+                $messages->add($e->getValidator()->getErrorMessage($e));
             }
         }
 
         if (count($messages) > 0) {
-            throw PropertyValidationException::make($messages);
+            throw ResourceValidationException::make($messages);
         }
     }
 }

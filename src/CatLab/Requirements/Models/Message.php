@@ -31,8 +31,11 @@ class Message
      * @param string $propertyName
      * @param string $message
      */
-    public function __construct(Requirement $requirement, string $propertyName, string $message)
-    {
+    public function __construct(
+        string $message,
+        Requirement $requirement = null,
+        string $propertyName = null
+    ) {
         $this->property = $propertyName;
         $this->requirement = $requirement;
         $this->message = $message;

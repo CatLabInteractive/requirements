@@ -2,6 +2,7 @@
 
 namespace CatLab\Requirements\Interfaces;
 use CatLab\Requirements\Exceptions\RequirementValidationException;
+use CatLab\Requirements\Exceptions\ValidatorValidationException;
 use CatLab\Requirements\Models\Message;
 
 /**
@@ -18,8 +19,8 @@ interface Validator
     public function validate($value);
 
     /**
-     * @param RequirementValidationException $exception
+     * @param ValidatorValidationException $exception
      * @return Message
      */
-    public function getErrorMessage(RequirementValidationException $exception) : Message;
+    public function getErrorMessage(ValidatorValidationException $exception) : Message;
 }
