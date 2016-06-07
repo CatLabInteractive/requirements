@@ -44,7 +44,7 @@ class Message
     /**
      * @return string
      */
-    public function getPropertyName() : string
+    public function getPropertyName()
     {
         return $this->property;
     }
@@ -52,7 +52,7 @@ class Message
     /**
      * @return \CatLab\Requirements\Interfaces\Requirement
      */
-    public function getRequirement() : Requirement
+    public function getRequirement()
     {
         return $this->requirement;
     }
