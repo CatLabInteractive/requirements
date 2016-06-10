@@ -60,4 +60,10 @@ trait TypeSetter
         $this->setType(PropertyType::NUMBER);
         return $this;
     }
+    
+    public function object()
+    {
+        $this->setType(PropertyType::OBJECT);
+        return $this;
+    }
 }

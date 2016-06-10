@@ -13,6 +13,7 @@ class PropertyType
     const DATETIME = 'datetime';
     const NUMBER = 'number';
     const BOOL = 'bool';
+    const OBJECT = 'object';
 
     /**
      * @param $type

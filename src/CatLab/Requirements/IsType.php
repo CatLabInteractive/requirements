@@ -67,6 +67,10 @@ class IsType extends Requirement
                 $check = is_string($value);
                 break;
 
+            case PropertyType::OBJECT:
+                $check = is_array($value) || is_object($value);
+                break;
+
             default:
                 throw RequirementValidationException::make($property, $this, $value);
                 break;
