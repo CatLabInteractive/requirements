@@ -26,6 +26,15 @@ class InArray extends Requirement
     }
 
     /**
+     * Return the allowed values
+     * @return mixed[]
+     */
+    public function getValues()
+    {
+        return $this->values;
+    }
+
+    /**
      * @return string
      */
     function getTemplate() : string
