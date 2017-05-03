@@ -10,7 +10,7 @@ class PropertyType
 {
     const INTEGER = 'integer';
     const STRING = 'string';
-    const DATETIME = 'datetime';
+    const DATETIME = 'dateTime';
     const NUMBER = 'number';
     const BOOL = 'boolean';
     const OBJECT = 'object';
