@@ -12,7 +12,7 @@ class PropertyType
     const STRING = 'string';
     const DATETIME = 'datetime';
     const NUMBER = 'number';
-    const BOOL = 'bool';
+    const BOOL = 'boolean';
     const OBJECT = 'object';
 
     /**
