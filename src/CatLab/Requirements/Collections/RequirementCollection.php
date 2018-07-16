@@ -4,6 +4,7 @@ namespace CatLab\Requirements\Collections;
 
 use CatLab\Base\Collections\Collection;
 use CatLab\Requirements\Exceptions\PropertyValidationException;
+use CatLab\Requirements\Exceptions\RequirementException;
 use CatLab\Requirements\Exceptions\RequirementValidationException;
 use CatLab\Requirements\Interfaces\Property;
 use CatLab\Requirements\Interfaces\Requirement;
@@ -14,6 +15,41 @@ use CatLab\Requirements\Interfaces\Requirement;
  */
 class RequirementCollection extends Collection
 {
+    /**
+     * @param $serializedCollection
+     * @return RequirementCollection
+     * @throws RequirementException
+     */
+    public static function make($serializedCollection)
+    {
+        if ($serializedCollection instanceof RequirementCollection) {
+            return $serializedCollection;
+        }
+
+        try {
+            $collection = unserialize($serializedCollection);
+            if (!$collection instanceof RequirementCollection) {
+                throw new RequirementException("Could not unserialize serialized RequirementCollection.");
+            }
+        } catch (\Exception $e) {
+            throw new RequirementException(
+                "Could not unserialize serialized RequirementCollection: " . $e->getMessage(),
+                500,
+                $e
+            );
+        }
+
+        return $collection;
+    }
+
+    /**
+     * @return string
+     */
+    public function serialize()
+    {
+        return serialize($this);
+    }
+
     /**
      * @param $value
      * @param Property $property
