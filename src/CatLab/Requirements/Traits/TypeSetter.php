@@ -21,7 +21,10 @@ trait TypeSetter
      */
     public function int()
     {
-        $this->setType(PropertyType::INTEGER);
+        $arguments = func_get_args();
+        array_unshift($arguments, PropertyType::INTEGER);
+        call_user_func_array([ $this, 'setType' ], $arguments);
+
         return $this;
     }
 
@@ -30,7 +33,9 @@ trait TypeSetter
      */
     public function string()
     {
-        $this->setType(PropertyType::STRING);
+        $arguments = func_get_args();
+        array_unshift($arguments, PropertyType::STRING);
+        call_user_func_array([ $this, 'setType' ], $arguments);
         return $this;
     }
 
@@ -39,7 +44,9 @@ trait TypeSetter
      */
     public function bool()
     {
-        $this->setType(PropertyType::BOOL);
+        $arguments = func_get_args();
+        array_unshift($arguments, PropertyType::BOOL);
+        call_user_func_array([ $this, 'setType' ], $arguments);
         return $this;
     }
 
@@ -48,7 +55,9 @@ trait TypeSetter
      */
     public function datetime()
     {
-        $this->setType(PropertyType::DATETIME);
+        $arguments = func_get_args();
+        array_unshift($arguments, PropertyType::DATETIME);
+        call_user_func_array([ $this, 'setType' ], $arguments);
         return $this;
     }
 
@@ -57,13 +66,20 @@ trait TypeSetter
      */
     public function number()
     {
-        $this->setType(PropertyType::NUMBER);
+        $arguments = func_get_args();
+        array_unshift($arguments, PropertyType::NUMBER);
+        call_user_func_array([ $this, 'setType' ], $arguments);
         return $this;
     }
-    
+
+    /**
+     * @return $this
+     */
     public function object()
     {
-        $this->setType(PropertyType::OBJECT);
+        $arguments = func_get_args();
+        array_unshift($arguments, PropertyType::OBJECT);
+        call_user_func_array([ $this, 'setType' ], $arguments);
         return $this;
     }
 }
