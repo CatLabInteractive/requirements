@@ -61,6 +61,11 @@ trait RequirementSetter
         if (!isset($this->requirements)) {
             $this->requirements = new RequirementCollection();
         }
+
+        if ($requirement instanceof Exists) {
+            $this->required = true;
+        }
+
         $this->requirements->add($requirement);
         return $this;
     }
@@ -91,7 +96,6 @@ trait RequirementSetter
     public function required()
     {
         $this->addRequirement(new Exists());
-        $this->required = true;
         return $this;
     }
 
