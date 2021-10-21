@@ -4,6 +4,7 @@ namespace CatLab\Requirements;
 
 use CatLab\Requirements\Exceptions\RequirementValidationException;
 use CatLab\Requirements\Models\Message;
+use CatLab\Requirements\Models\TranslatableMessage;
 
 /**
  * Class Requirement
@@ -19,13 +20,11 @@ abstract class Requirement implements \CatLab\Requirements\Interfaces\Requiremen
      */
     public function getErrorMessage(RequirementValidationException $exception) : Message
     {
-        $message = sprintf(
+        return new TranslatableMessage(
             $this->getTemplate(),
-            $exception->getProperty()->getPropertyName()
-        );
-
-        return new Message(
-            $message,
+            [
+                $exception->getProperty()->getPropertyName()
+            ],
             $exception->getRequirement(),
             $exception->getProperty()->getPropertyName()
         );

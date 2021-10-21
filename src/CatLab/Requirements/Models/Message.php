@@ -72,7 +72,7 @@ class Message
     {
         return [
             'property' => $this->property,
-            'message' => $this->message
+            'message' => $this->getMessage()
         ];
     }
 
@@ -81,6 +81,6 @@ class Message
      */
     public function __toString()
     {
-        return $this->message;
+        return $this->getMessage();
     }
 }
