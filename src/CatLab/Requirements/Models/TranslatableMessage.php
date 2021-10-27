@@ -2,6 +2,7 @@
 
 namespace CatLab\Requirements\Models;
 
+use CatLab\Requirements\Exceptions\RequirementValidationException;
 use CatLab\Requirements\Interfaces\Requirement;
 
 /**
@@ -25,17 +26,19 @@ class TranslatableMessage extends Message
      * @param array $values
      * @param Requirement|null $requirement
      * @param string|null $propertyName
+     * @param RequirementValidationException|null $validationException
      */
     public function __construct(
         string $template,
         array $values,
         Requirement $requirement = null,
-        string $propertyName = null
+        string $propertyName = null,
+        RequirementValidationException $validationException = null
     ) {
         $this->template = $template;
         $this->values = $values;
 
-        parent::__construct($this->getMessage(), $requirement, $propertyName);
+        parent::__construct($this->getMessage(), $requirement, $propertyName, $validationException);
     }
 
     /**

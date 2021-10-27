@@ -13,9 +13,14 @@ use CatLab\Requirements\Interfaces\Property;
 class IsMax extends Requirement
 {
     /**
-     * @var string
+     * @var int
      */
     private $length;
+
+    /**
+     * @var string
+     */
+    private $template;
 
     /**
      * IsMin constructor.
@@ -27,17 +32,8 @@ class IsMax extends Requirement
     }
 
     /**
-     * @return string
-     */
-    function getTemplate() : string
-    {
-        return 'Property \'%s\' must have a maximum length of ' . $this->length . '.';
-    }
-
-    /**
      * @param Property $property
      * @param $value
-     * @return mixed
      * @throws RequirementValidationException
      */
     public function validate(Property $property, $value)
@@ -47,13 +43,35 @@ class IsMax extends Requirement
         }
 
         if (PropertyType::isNumeric($property->getType())) {
+            $this->template = 'Property \'%s\' must have a maximum value of %d.';
             if ($value > $this->length) {
                 throw RequirementValidationException::make($property, $this, $value);
             }
         } else {
+            $this->template = 'Property \'%s\' must have a maximum length of %d.';
             if (mb_strlen($value) > $this->length) {
                 throw RequirementValidationException::make($property, $this, $value);
             }
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getTemplate() : string
+    {
+        return $this->template;
+    }
+
+    /**
+     * @param Property $property
+     * @return mixed[]
+     */
+    public function getTemplateValues(Property $property): array
+    {
+        return [
+            $property->getPropertyName(),
+            $this->length
+        ];
     }
 }

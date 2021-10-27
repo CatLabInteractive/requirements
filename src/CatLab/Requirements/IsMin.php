@@ -13,9 +13,14 @@ use CatLab\Requirements\Interfaces\Property;
 class IsMin extends Requirement
 {
     /**
-     * @var string
+     * @var int
      */
     private $length;
+
+    /**
+     * @var string
+     */
+    private $template;
 
     /**
      * IsMin constructor.
@@ -24,14 +29,6 @@ class IsMin extends Requirement
     public function __construct(int $length)
     {
         $this->length = $length;
-    }
-
-    /**
-     * @return string
-     */
-    function getTemplate() : string
-    {
-        return 'Property \'%s\' must have a minimum length of ' . $this->length . '.';
     }
 
     /**
@@ -47,13 +44,35 @@ class IsMin extends Requirement
         }
 
         if (PropertyType::isNumeric($property->getType())) {
+            $this->template = 'Property \'%s\' must have a minimum value of %d.';
             if ($value < $this->length) {
                 throw RequirementValidationException::make($property, $this, $value);
             }
         } else {
+            $this->template = 'Property \'%s\' must have a minimum length of %d.';
             if (mb_strlen($value) < $this->length) {
                 throw RequirementValidationException::make($property, $this, $value);
             }
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getTemplate() : string
+    {
+        return $this->template;
+    }
+
+    /**
+     * @param Property $property
+     * @return mixed[]
+     */
+    public function getTemplateValues(Property $property): array
+    {
+        return [
+            $property->getPropertyName(),
+            $this->length
+        ];
     }
 }

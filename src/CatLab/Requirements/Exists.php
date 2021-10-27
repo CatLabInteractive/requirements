@@ -28,8 +28,19 @@ class Exists extends Requirement
     /**
      * @return string
      */
-    function getTemplate() : string
+    public function getTemplate() : string
     {
         return 'Property \'%s\' must exist.';
+    }
+
+    /**
+     * @param Property $property
+     * @return array
+     */
+    public function getTemplateValues(Property $property): array
+    {
+        return [
+            $property->getPropertyName()
+        ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace CatLab\Requirements\Models;
 
+use CatLab\Requirements\Exceptions\RequirementValidationException;
 use CatLab\Requirements\Interfaces\Requirement;
 
 /**
@@ -26,19 +27,32 @@ class Message
     private $message;
 
     /**
+     * @var mixed
+     */
+    private $providedValue;
+
+    /**
+     * @var RequirementValidationException
+     */
+    private $validationException;
+
+    /**
      * Message constructor.
-     * @param Requirement $requirement
-     * @param string $propertyName
      * @param string $message
+     * @param Requirement|null $requirement
+     * @param string|null $propertyName
+     * @param RequirementValidationException|null $validationException
      */
     public function __construct(
         string $message,
         Requirement $requirement = null,
-        string $propertyName = null
+        string $propertyName = null,
+        RequirementValidationException $validationException = null
     ) {
         $this->property = $propertyName;
         $this->requirement = $requirement;
         $this->message = $message;
+        $this->validationException = $validationException;
     }
 
     /**
@@ -74,6 +88,32 @@ class Message
             'property' => $this->property,
             'message' => $this->getMessage()
         ];
+    }
+
+    /**
+     * @param $value
+     * @return Message
+     */
+    public function setProvidedValue($value): Message
+    {
+        $this->providedValue = $value;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProvidedValue()
+    {
+        return $this->providedValue;
+    }
+
+    /**
+     * @return RequirementValidationException|null
+     */
+    public function getValidationException()
+    {
+        return $this->validationException;
     }
 
     /**

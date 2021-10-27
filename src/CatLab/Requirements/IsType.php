@@ -27,25 +27,12 @@ class IsType extends Requirement
     }
 
     /**
-     * @return string
-     */
-    function getTemplate() : string
-    {
-        return 'Property \'%s\' must be of type ' . $this->type . '.';
-    }
-
-    /**
      * @param Property $property
      * @param $value
-     * @return mixed
      * @throws RequirementValidationException
      */
     public function validate(Property $property, $value)
     {
-        if ($value === null) {
-            return;
-        }
-
         if ($value === null) {
             return;
         }
@@ -83,5 +70,25 @@ class IsType extends Requirement
         if (!$check) {
             throw RequirementValidationException::make($property, $this, $value);
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getTemplate() : string
+    {
+        return 'Property \'%s\' must be of type %s.';
+    }
+
+    /**
+     * @param Property $property
+     * @return mixed[]
+     */
+    public function getTemplateValues(Property $property): array
+    {
+        return [
+            $property->getPropertyName(),
+            $this->type
+        ];
     }
 }

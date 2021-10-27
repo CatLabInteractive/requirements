@@ -3,6 +3,7 @@
 namespace CatLab\Requirements;
 
 use CatLab\Requirements\Exceptions\RequirementValidationException;
+use CatLab\Requirements\Interfaces\Property;
 use CatLab\Requirements\Models\Message;
 use CatLab\Requirements\Models\TranslatableMessage;
 
@@ -12,7 +13,18 @@ use CatLab\Requirements\Models\TranslatableMessage;
  */
 abstract class Requirement implements \CatLab\Requirements\Interfaces\Requirement
 {
-    abstract function getTemplate() : string;
+    /**
+     * Return the template that will be used to show an error message.
+     * @return string
+     */
+    abstract public function getTemplate() : string;
+
+    /**
+     * Return the values that will be injected in the template.
+     * @param Property $property
+     * @return array
+     */
+    abstract public function getTemplateValues(Property $property): array;
 
     /**
      * @param RequirementValidationException $exception
@@ -20,13 +32,16 @@ abstract class Requirement implements \CatLab\Requirements\Interfaces\Requiremen
      */
     public function getErrorMessage(RequirementValidationException $exception) : Message
     {
-        return new TranslatableMessage(
+        $message = new TranslatableMessage(
             $this->getTemplate(),
-            [
-                $exception->getProperty()->getPropertyName()
-            ],
+            $this->getTemplateValues($exception->getProperty()),
             $exception->getRequirement(),
-            $exception->getProperty()->getPropertyName()
+            $exception->getProperty()->getPropertyName(),
+            $exception
         );
+
+        $message->setProvidedValue($exception->getValue());
+
+        return $message;
     }
 }
