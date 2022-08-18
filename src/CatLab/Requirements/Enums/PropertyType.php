@@ -15,6 +15,8 @@ class PropertyType
     const BOOL = 'boolean';
     const OBJECT = 'object';
 
+    const HTML = 'html';
+
     /**
      * @param $type
      * @return bool
@@ -26,7 +28,8 @@ class PropertyType
             self::STRING,
             self::DATETIME,
             self::NUMBER,
-            self::BOOL
+            self::BOOL,
+            self::HTML
         ]);
     }
 

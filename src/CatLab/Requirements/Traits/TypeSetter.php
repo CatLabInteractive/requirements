@@ -82,4 +82,15 @@ trait TypeSetter
         call_user_func_array([ $this, 'setType' ], $arguments);
         return $this;
     }
+
+    /**
+     * @return $this
+     */
+    public function html()
+    {
+        $arguments = func_get_args();
+        array_unshift($arguments, PropertyType::HTML);
+        call_user_func_array([ $this, 'setType' ], $arguments);
+        return $this;
+    }
 }
